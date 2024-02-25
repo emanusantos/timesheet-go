@@ -1,0 +1,28 @@
+16:22 PM - fix: remove log
+16:21 PM - feat: flow to redeem group promotion
+16:13 PM - feat: blacklist friends list and handle accept/reject notifications
+15:59 PM - feat: blacklist param for friends list
+15:41 PM - Merge branch 'develop' of github.com:lubysoftware/SavingBucks.app into feat/handle-group-promo-invitation
+14:55 PM - feat: handle group promo notification
+14:29 PM - feat: accept or reject promo group invitation
+13:58 PM - feat: PromoGroupUsersList and PromoGRoupUsersItem component
+12:37 PM - feat: integrate useGetGroupInvites query
+11:29 AM - feat: consider only groups with status accepted on myGroupsCount
+10:34 AM - feat: find all group promotion invites
+10:03 AM - feat: invite friends flow
+09:48 AM - feat: invite users to promotion request integration
+
+Commits:
+https://github.com/lubysoftware/SavingBucks.api/commit/df6f7cf3e76bd3e5f8928baa035f2f3d766b0889
+https://github.com/lubysoftware/SavingBucks.api/commit/e772bf28d32ceaa6e7a5ee23f98c68e7df3d2db9
+https://github.com/lubysoftware/SavingBucks.app/commit/2e439029f7f054e8cfcaf66aa845e2c2488d798f
+https://github.com/lubysoftware/SavingBucks.api/commit/d28c383bba356859f701a9cbf53f771c6c8f8861
+https://github.com/lubysoftware/SavingBucks.app/commit/f6ae04fb6ac0356394c3573d5bf41a5cb9ae81ad
+https://github.com/lubysoftware/SavingBucks.app/commit/3cc366eb99b334a81cc36f1a80b8fdaa4a33253d
+https://github.com/lubysoftware/SavingBucks.app/commit/ae5258744f392f1acb3af0b583a731a832c40d13
+https://github.com/lubysoftware/SavingBucks.app/commit/a087df9715d07130933b20fae22f9dd0bd95f2ff
+https://github.com/lubysoftware/SavingBucks.app/commit/68d38c9123753332c649da2d751a3c1c8c77dfb2
+https://github.com/lubysoftware/SavingBucks.api/commit/6d3d286aa13f025cd7bba9f6c0233635d69736fd
+https://github.com/lubysoftware/SavingBucks.api/commit/3269da586f2ad548cfccf7e74e86c05831f4ec29
+https://github.com/lubysoftware/SavingBucks.app/commit/a695e7b68b2e3c0de76e687c85e32e6b7a4cc8d0
+https://github.com/lubysoftware/SavingBucks.app/commit/365230fed817fce02b212dcbcfe048f6c11f1763
