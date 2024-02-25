@@ -11,6 +11,7 @@ import (
 	"os/exec"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -167,14 +168,23 @@ func main() {
 	}
 
 	var responses []CommitsResponse
+    var wg sync.WaitGroup
 
-	for i := 0; i < len(urls); i++ {
-		response := FetchEndpoint(urls[i], key)
+    wg.Add(len(urls))
 
-		jsonResponse := ParseJsonResponse(response)
+    for _, url := range urls {
+        go func(currentUrl string) {
+            response := FetchEndpoint(currentUrl, key)
 
-		responses = append(responses, jsonResponse...)
+            jsonResponse := ParseJsonResponse(response)
+
+            responses = append(responses, jsonResponse...)
+
+            wg.Done()
+        }(url)
 	}
+
+    wg.Wait()
 
 	SortCommits(responses)
 
