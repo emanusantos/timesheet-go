@@ -108,11 +108,11 @@ func ParseJsonResponse(buffer []byte) []CommitsResponse {
 	return commits
 }
 
-func SortCommits(commits []CommitsResponse) {
-	sort.Slice(commits[:], func(i, j int) bool {
+func SortCommits(commits *[]CommitsResponse) {
+	sort.Slice((*commits)[:], func(i, j int) bool {
 		layout := "2006-01-02T15:04:05.999Z"
-		dateI, _ := time.Parse(layout, commits[i].Commit.Author.Date)
-		dateJ, _ := time.Parse(layout, commits[j].Commit.Author.Date)
+		dateI, _ := time.Parse(layout, (*commits)[i].Commit.Author.Date)
+		dateJ, _ := time.Parse(layout, (*commits)[j].Commit.Author.Date)
 
 		return dateJ.Before(dateI)
 	})
@@ -186,7 +186,7 @@ func main() {
 
     wg.Wait()
 
-	SortCommits(responses)
+	SortCommits(&responses)
 
 	WriteCommitsToFile(responses)
 
