@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 	"os"
-    "os/exec"
+	"os/exec"
 	"sort"
 	"strings"
 	"time"
@@ -31,8 +31,8 @@ type CommitsResponse struct {
 }
 
 func CheckError(err error) {
-    if err != nil {
-        fmt.Printf("Erro ao requisitar commits: %s\n", err)
+	if err != nil {
+		fmt.Printf("Erro ao requisitar commits: %s\n", err)
 		os.Exit(1)
 	}
 }
@@ -81,20 +81,20 @@ func FetchEndpoint(endpoint, key string) []byte {
 
 	request, err := http.NewRequest("GET", endpoint, nil)
 
-    CheckError(err);
+	CheckError(err)
 
 	request.Header.Add("User-Agent", "emanusantos")
-	request.Header.Add("Authorization", "Bearer" + " " + key)
+	request.Header.Add("Authorization", "Bearer"+" "+key)
 
 	response, err := client.Do(request)
 
-    CheckError(err);
+	CheckError(err)
 
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 
-    CheckError(err);
+	CheckError(err)
 
 	return body
 }
@@ -122,7 +122,7 @@ func WriteCommitsToFile(commits []CommitsResponse) {
 
 	output, err := os.Create("./output.txt")
 
-    CheckError(err);
+	CheckError(err)
 
 	var content []byte
 	var links []byte
@@ -153,7 +153,7 @@ func WriteCommitsToFile(commits []CommitsResponse) {
 func main() {
 	key, err := GetKey(os.Args)
 
-    CheckError(err)
+	CheckError(err)
 
 	text := GetUserInput()
 
@@ -180,14 +180,13 @@ func main() {
 
 	WriteCommitsToFile(responses)
 
-    fmt.Println("\nCommits extraídos com sucesso.\n")
+	fmt.Println("\nCommits extraídos com sucesso.\n")
 
-    cmd := exec.Command("cat", "output.txt")
+	cmd := exec.Command("cat", "output.txt")
 
-    output, err := cmd.Output()
+	output, err := cmd.Output()
 
-    if (err == nil) {
-        fmt.Println(string(output))
-    }
+	if err == nil {
+		fmt.Println(string(output))
+	}
 }
-
