@@ -161,30 +161,33 @@ func main() {
 	startDate := GetDate(text, "T00:00:00.000Z").Format("2006-01-02T15:04:05Z")
 	endDate := GetDate(text, "T23:59:59.000Z").Format("2006-01-02T15:04:05Z")
 
-	urls := [3]string{
-		FormatEndpoint("https://api.github.com/repos/lubysoftware/SavingBucks.app/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
-		FormatEndpoint("https://api.github.com/repos/lubysoftware/SavingBucks.api/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
-		FormatEndpoint("https://api.github.com/repos/lubysoftware/SavingBucks.webApp/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+	urls := [6]string{
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.app/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.api/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.metrics/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.webApp/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.admin/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
+		FormatEndpoint("https://api.github.com/repos/SavingBucks-com/SavingBucks.website/commits?author=emanusantos&sha=develop&since=%s&until=%s", startDate, endDate),
 	}
 
 	var responses []CommitsResponse
-    var wg sync.WaitGroup
+	var wg sync.WaitGroup
 
-    wg.Add(len(urls))
+	wg.Add(len(urls))
 
-    for _, url := range urls {
-        go func(currentUrl string) {
-            response := FetchEndpoint(currentUrl, key)
+	for _, url := range urls {
+		go func(currentUrl string) {
+			response := FetchEndpoint(currentUrl, key)
 
-            jsonResponse := ParseJsonResponse(response)
+			jsonResponse := ParseJsonResponse(response)
 
-            responses = append(responses, jsonResponse...)
+			responses = append(responses, jsonResponse...)
 
-            wg.Done()
-        }(url)
+			wg.Done()
+		}(url)
 	}
 
-    wg.Wait()
+	wg.Wait()
 
 	SortCommits(&responses)
 
